@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CUSTOM PROPERTIES ─────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --font-geist: 'Geist', system-ui, sans-serif;
+    --font-geist-mono: 'Geist Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus ring — accessible, consistent */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500;
+  }
+}
+
+/* ─── TYPOGRAPHY UTILITIES ──────────────────────────────────────────────── */
+@layer utilities {
+  /* Line clamp helpers */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ─── ARTICLE PROSE OVERRIDES ───────────────────────────────────────────── */
+/* Applied to .prose wrapper in article pages */
+.article-prose {
+  @apply text-slate-700 text-[1.05rem] leading-[1.85];
+}
+
+/* Paragraphs */
+.article-prose p {
+  @apply mb-6;
+}
+
+/* Headings — styled for readability */
+.article-prose h2 {
+  @apply font-sans font-extrabold text-slate-900 text-[1.5rem] leading-snug
+         mt-12 mb-4 tracking-tight
+         pl-4 border-l-4 border-blue-600;
+}
+
+.article-prose h3 {
+  @apply font-sans font-bold text-slate-900 text-[1.15rem] leading-snug mt-8 mb-3;
+}
+
+.article-prose h4 {
+  @apply font-sans font-semibold text-slate-800 text-[1rem] mt-6 mb-2
+         uppercase tracking-wider text-sm;
+}
+
+/* Links */
+.article-prose a {
+  @apply text-blue-600 no-underline border-b border-blue-200
+         hover:border-blue-600 transition-colors duration-150;
+}
+
+/* Lists */
+.article-prose ul,
+.article-prose ol {
+  @apply my-5 ml-5 flex flex-col gap-2;
+}
+
+.article-prose ul li {
+  @apply relative pl-1;
+}
+
+.article-prose ul li::marker {
+  @apply text-blue-600;
+}
+
+.article-prose ol li::marker {
+  @apply text-blue-600 font-bold;
+}
+
+/* Blockquote */
+.article-prose blockquote {
+  @apply my-8 pl-5 pr-4 py-5 rounded-r-xl
+         bg-gradient-to-r from-blue-50 to-white
+         border-l-4 border-blue-500
+         not-italic;
+}
+
+.article-prose blockquote p {
+  @apply mb-0 text-slate-600 italic text-[1.05rem] leading-relaxed;
+}
+
+.article-prose blockquote cite {
+  @apply block mt-3 font-sans text-xs font-bold text-blue-600 not-italic uppercase tracking-wide;
+}
+
+/* Inline code */
+.article-prose code:not(pre code) {
+  @apply bg-slate-100 text-slate-800 text-[0.875em] px-1.5 py-0.5 rounded font-mono;
+}
+
+/* Code blocks */
+.article-prose pre {
+  @apply bg-slate-900 text-slate-100 rounded-xl p-5 my-6
+         overflow-x-auto text-sm leading-relaxed font-mono
+         shadow-lg shadow-slate-900/20;
+}
+
+.article-prose pre code {
+  @apply bg-transparent text-inherit p-0;
+}
+
+/* Images */
+.article-prose img {
+  @apply rounded-xl shadow-md my-6 w-full h-auto;
+}
+
+/* Tables */
+.article-prose table {
+  @apply w-full text-sm my-6 border-collapse rounded-xl overflow-hidden shadow-sm;
+}
+
+.article-prose th {
+  @apply bg-slate-100 text-slate-700 font-sans font-bold text-left px-4 py-3 text-xs uppercase tracking-wide;
+}
+
+.article-prose td {
+  @apply border-b border-slate-100 px-4 py-3 text-slate-600;
+}
+
+.article-prose tr:last-child td {
+  @apply border-b-0;
+}
+
+/* Horizontal rule */
+.article-prose hr {
+  @apply border-t border-slate-200 my-10;
+}
+
+/* Strong */
+.article-prose strong {
+  @apply font-bold text-slate-900;
+}
+
+/* ─── READING PROGRESS BAR ──────────────────────────────────────────────── */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ─── CARD HOVER EFFECT ─────────────────────────────────────────────────── */
+.card-hover {
+  @apply transition-all duration-200 hover:-translate-y-1
+         hover:shadow-xl hover:shadow-slate-200/60
+         hover:border-blue-200/60;
+}
+
+/* ─── SKELETON LOADING ──────────────────────────────────────────────────── */
+.skeleton {
+  @apply bg-slate-200 rounded animate-pulse;
+}
