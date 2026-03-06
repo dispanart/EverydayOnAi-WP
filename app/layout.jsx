@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google';
 import { SITE } from '@/config/site';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 // ─── FONTS ──────────────────────────────────────────────────────────────────
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="font-sans antialiased bg-white text-slate-900 selection:bg-blue-100 selection:text-blue-900">
         {children}
+        <Analytics />
       </body>
     </html>
   );
